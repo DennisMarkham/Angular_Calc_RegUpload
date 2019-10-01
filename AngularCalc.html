@@ -8,11 +8,18 @@ input
 	width: 30px;
 }
 </style>
-<div data-ng-app="">
+<div data-ng-app="" ng-init="operations=['Addition', 'Subtraction', 'Multiplication', 'Division']">
 
 <h2>Calculator</h2>
 <br>
 <br>
+<p>This calculator can do:</p>
+<ul>
+    <li ng-repeat="x in operations">
+      {{ x }}
+    </li>
+  </ul>
+ 
 Addition:
 <input type="number" ng-model="ad1"> + <input type="number" ng-model="ad2"> = {{ad1 + ad2}}
 <br>
