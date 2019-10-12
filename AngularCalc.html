@@ -19,6 +19,8 @@ input
       {{ x }}
     </li>
   </ul>
+
+</div>
  
 Addition:
 <input type="number" ng-model="ad1"> + <input type="number" ng-model="ad2"> = {{ad1 + ad2}}
@@ -34,8 +36,26 @@ Multiply:
 <br>
 Divide:
 <input type="number" ng-model="div1"> / <input type="number" ng-model="div2"> = {{div1 / div2}}
+<br>
+<br>
 
+<div ng-app="myApp" ng-controller="myCtrl">
+Square-root:
+<input type="number" ng-model="toBeRooted"> = <span ng-model = "answer">{{squareRooting()}}</span>
 </div>
 
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+  $scope.toBeRooted = "";
+  $scope.squareRooting = function() {
+  	console.log("Function firing");
+    return Math.sqrt($scope.toBeRooted);
+  }
+});
+
+//got square root working but somewhere along the line I broke the list, WTF?
+	</script>
 </body>
 </html>
