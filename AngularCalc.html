@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html>
+<head>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<body>
 <style>
 input
 {
-	width: 30px;
+  width: 30px;
 }
 </style>
+</head>
+<body ng-app="myApp">
+
 <div data-ng-app="" ng-init="operations=['Addition', 'Subtraction', 'Multiplication', 'Division']">
 
 <h2>Calculator</h2>
@@ -39,7 +42,7 @@ Divide:
 <br>
 <br>
 
-<div ng-app="myApp" ng-controller="myCtrl">
+<div ng-controller="myCtrl">
 Square-root:
 <input type="number" ng-model="toBeRooted"> = <span ng-model = "answer">{{squareRooting()}}</span>
 </div>
@@ -50,12 +53,11 @@ var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope) {
   $scope.toBeRooted = "";
   $scope.squareRooting = function() {
-  	console.log("Function firing");
+    console.log("Function firing");
     return Math.sqrt($scope.toBeRooted);
   }
 });
-
-//got square root working but somewhere along the line I broke the list, WTF?
-	</script>
+//somehow the square root thing broke the list.  WTF
+  </script>
 </body>
 </html>
