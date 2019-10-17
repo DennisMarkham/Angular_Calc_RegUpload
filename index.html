@@ -5,8 +5,37 @@
 <style>
 input
 {
-  width: 30px;
+  width: 40px;
 }
+
+body
+{
+  background-color: rgb(200, 200, 200);
+}
+
+ @media only screen and (min-width: 600px) {
+  body{
+  margin-left: 50px;
+}
+
+ @media only screen and (min-width: 1200px) {
+  body{
+  margin: 0;
+  position: absolute;
+  /*top: 50%;*/
+  left: 25%;
+  /*transform: translate(-50%, 0%);*/
+
+h2
+{
+  border-style:outset;
+  display:inline;
+  padding: 5px;
+}
+
+}
+
+
 </style>
 </head>
 <body ng-app="myApp">
@@ -51,6 +80,8 @@ Square-root:
 <script>
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope) {
+  // $scope.ad1 = parseFloat(ad1);
+  // $scope.ad2 = parseFloat(ad2);
   $scope.toBeRooted = "";
   $scope.squareRooting = function() {
     console.log("Function firing");
