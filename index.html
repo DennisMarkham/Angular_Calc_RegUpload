@@ -10,36 +10,47 @@ input
 
 body
 {
+  background-color: rgb(225, 225, 225);
+}
+#main
+{
   background-color: rgb(200, 200, 200);
+  border-style:outset;
+  padding: 10px;
+
+  /*This here does not work in preventing long decimal from expanding the calculator*/
+  max-width: 400px;
+  overflow:hidden;
 }
 
  @media only screen and (min-width: 600px) {
-  body{
+  #main{
   margin-left: 50px;
 }
 
  @media only screen and (min-width: 1200px) {
-  body{
+  #main{
   margin: 0;
+  margin-top:20px;
   position: absolute;
   /*top: 50%;*/
   left: 25%;
   /*transform: translate(-50%, 0%);*/
 
+}
+
 h2
 {
+  
+  padding:5px;
   border-style:outset;
   display:inline;
-  padding: 5px;
 }
-
-}
-
 
 </style>
 </head>
 <body ng-app="myApp">
-
+<div id = "main">
 <div data-ng-app="" ng-init="operations=['Addition', 'Subtraction', 'Multiplication', 'Division', 'Square-root', 'Exponents']">
 
 <h2>Calculator</h2>
@@ -80,7 +91,7 @@ Power calculator:
 <input type="number" ng-model="toBePowered"> ^ <input type="number" ng-model="power">  = {{powering()}}
 </div>
 
-
+</div>
 <script>
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope) {
@@ -91,7 +102,7 @@ app.controller('myCtrl', function($scope) {
  
   $scope.squareRooting = function() {
     console.log("Function firing");
-    return Math.sqrt($scope.toBeRooted);
+    return Math.sqrt($scope.toBeRooted).toFixed(2);
   }
 
     $scope.toBePowered = "";
