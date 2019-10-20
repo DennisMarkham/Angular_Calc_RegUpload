@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<title>Angular Calculator</title>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <style>
 input
@@ -12,48 +10,37 @@ input
 
 body
 {
-  background-color: rgb(225, 225, 225);
-}
-#main
-{
   background-color: rgb(200, 200, 200);
-  border-style:outset;
-  padding: 10px;
-
-  /*This here does not work in preventing long decimal from expanding the calculator*/
-  max-width: 400px;
-  overflow:hidden;
 }
 
  @media only screen and (min-width: 600px) {
-  #main{
+  body{
   margin-left: 50px;
 }
 
  @media only screen and (min-width: 1200px) {
-  #main{
+  body{
   margin: 0;
-  margin-top:20px;
   position: absolute;
   /*top: 50%;*/
   left: 25%;
   /*transform: translate(-50%, 0%);*/
 
-}
-
 h2
 {
-  
-  padding:5px;
   border-style:outset;
   display:inline;
+  padding: 5px;
 }
+
+}
+
 
 </style>
 </head>
-<body onload = "makeOpArray()" ng-app="myApp">
-<div id = "main">
-<div data-ng-app="" ng-init="operations=['Addition', 'Subtraction', 'Multiplication', 'Division', 'Square-root']">
+<body ng-app="myApp">
+
+<div data-ng-app="" ng-init="operations=['Addition', 'Subtraction', 'Multiplication', 'Division', 'Square-root', 'Exponents']">
 
 <h2>Calculator</h2>
 <br>
@@ -67,11 +54,11 @@ h2
 
 </div>
  
-<span class = "op">Addition</span>:
+Addition:
 <input type="number" ng-model="ad1"> + <input type="number" ng-model="ad2"> = {{ad1 + ad2}}
 <br>
 <br>
-<span class = "op">Subtraction</span>:
+Subtraction:
 <input type="number" ng-model="sub1"> - <input type="number" ng-model="sub2"> = {{sub1 - sub2}}
 <br>
 <br>
@@ -86,31 +73,33 @@ Divide:
 
 <div ng-controller="myCtrl">
 Square-root:
-<input type="number" ng-model="toBeRooted"> = <span ng-model = "answer">{{squareRooting()}}</span>
+<input type="number" ng-model="toBeRooted"> = {{squareRooting()}}
+<br>
+<br>
+Power calculator:
+<input type="number" ng-model="toBePowered"> ^ <input type="number" ng-model="power">  = {{powering()}}
 </div>
 
-</div>
+
 <script>
-
-  //all this + having the function on body seems to break the App.  Why?
-var x = document.getElementsByClassName("op").textContent;
-
-function makeOpArray()
-{
-  console.log(x);
-}
-
-//****
-
-
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope) {
   // $scope.ad1 = parseFloat(ad1);
   // $scope.ad2 = parseFloat(ad2);
+
   $scope.toBeRooted = "";
+ 
   $scope.squareRooting = function() {
     console.log("Function firing");
-    return Math.sqrt($scope.toBeRooted).toFixed(2);
+    return Math.sqrt($scope.toBeRooted);
+  }
+
+    $scope.toBePowered = "";
+     $scope.power = "";
+  $scope.powering = function()
+  {
+
+    return Math.pow($scope.toBePowered, $scope.power);
   }
 });
 //somehow the square root thing broke the list.  WTF
